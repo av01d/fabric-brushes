@@ -206,7 +206,7 @@ The Fontpicker plugin is used (among others) on the following websites:
 ## License
 
 This plugin is released under the MIT license. It is simple and easy to understand and places almost no restrictions on what you can do with the code.
-[More Information](http://en.wikipedia.org/wiki/MIT_License)
+[More Information](http://en.wikipedia.org/wiki/MIT_License).
 
 The development of this component was funded by [Zygomatic](https://www.zygomatic.nl/).
 
