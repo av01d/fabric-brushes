@@ -14,10 +14,6 @@ A collection of brushes for fabric.js (version 4 and up).
 - Squares
 - Web
 
-<img src="https://av01d.github.io/fabric-brushes/img/brushes.png" width="200" height="256">
-
-## [Live Demo](https://av01d.github.io/fabric-brushes/index.html)
-
 ## Table of contents
 - [Demo](#demo)
 - [Getting started](#getting-started)
@@ -26,9 +22,7 @@ A collection of brushes for fabric.js (version 4 and up).
 - [Real world examples](#real-world-examples)
 - [License](#license)
 
-## Demo
-
-[Live demo](https://av01d.github.io/fabric-brushes/index.html).
+## [Demo](https://av01d.github.io/fabric-brushes/index.html)
 
 [<img src="https://av01d.github.io/fabric-brushes/img/brush.crayon.gif" alt="Crayon brush" width="640" height="320">](https://av01d.github.io/fabric-brush)
 [<img src="https://av01d.github.io/fabric-brushes/img/brush.fur.gif" alt="Fur brush" width="640" height="320">](https://av01d.github.io/fabric-brush)
