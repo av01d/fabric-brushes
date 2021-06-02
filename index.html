@@ -85,6 +85,16 @@ body {
 	background-color: #fff;
 	color: #000;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	font-size: 16px;
+}
+
+a {
+	color:#39c;
+	text-decoration:none;
+}
+
+a:hover {
+	color:#069;
 }
 
 .canvas-container {
@@ -110,10 +120,16 @@ body {
 </style>
 </head>
 <body>
+<h1 style="margin:0">A collection of Brushes for <a href="http://fabricjs.com">Fabric.js</a></h1>
+<p>
+	An addon for fabric.js that extends it with 11 new brushes.<br>
+	<svg style="vertical-align: bottom" version="1.1" width="20" height="20" viewBox="0 0 16 16" class="octicon octicon-mark-github" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+	<a href="https://github.com/av01d/fabric-brushes">View project on GitHub</a>.
+</p>
 
 <!------------------------------------- Crayon ------------------------------------->
 
-<h1>Crayon Brush</h1>
+<h2>Crayon Brush</h2>
 <div class="canvas-wrap">
 	<canvas id="crayon-canvas"></canvas>
 </div>
@@ -165,7 +181,7 @@ fabricCanvas.freeDrawingBrush = new fabric.CrayonBrush(fabricCanvas, {width:30, 
 
 <!------------------------------------- Fur ------------------------------------->
 
-<h1>Fur Brush</h1>
+<h2>Fur Brush</h2>
 <div class="canvas-wrap">
 	<canvas id="fur-canvas"></canvas>
 </div>
@@ -215,7 +231,7 @@ fabricCanvas.freeDrawingBrush = new fabric.FurBrush(fabricCanvas, {width:1, colo
 
 <!------------------------------------- Ink ------------------------------------->
 
-<h1>Ink Brush</h1>
+<h2>Ink Brush</h2>
 <div class="canvas-wrap">
 	<canvas id="ink-canvas"></canvas>
 </div>
@@ -265,7 +281,7 @@ fabricCanvas.freeDrawingBrush = new fabric.InkBrush(fabricCanvas, {width:30, col
 
 <!------------------------------------- Long Fur ------------------------------------->
 
-<h1>Long Fur Brush</h1>
+<h2>Long Fur Brush</h2>
 <div class="canvas-wrap">
 	<canvas id="longfur-canvas"></canvas>
 </div>
@@ -315,7 +331,7 @@ fabricCanvas.freeDrawingBrush = new fabric.LongFurBrush(fabricCanvas, {width:1, 
 
 <!------------------------------------- Marker ------------------------------------->
 
-<h1>Marker Brush</h1>
+<h2>Marker Brush</h2>
 <div class="canvas-wrap">
 	<canvas id="marker-canvas"></canvas>
 </div>
@@ -365,7 +381,7 @@ fabricCanvas.freeDrawingBrush = new fabric.MarkerBrush(fabricCanvas, {width:30, 
 
 <!------------------------------------- Ribbon ------------------------------------->
 
-<h1>Ribbon Brush</h1>
+<h2>Ribbon Brush</h2>
 <div class="canvas-wrap">
 	<canvas id="ribbon-canvas"></canvas>
 </div>
@@ -415,7 +431,7 @@ fabricCanvas.freeDrawingBrush = new fabric.RibbonBrush(fabricCanvas, {width:1, c
 
 <!------------------------------------- Shaded ------------------------------------->
 
-<h1>Shaded Brush</h1>
+<h2>Shaded Brush</h2>
 <div class="canvas-wrap">
 	<canvas id="shaded-canvas"></canvas>
 </div>
@@ -470,7 +486,7 @@ fabricCanvas.freeDrawingBrush = new fabric.ShadedBrush(fabricCanvas, {width:1, c
 
 <!------------------------------------- Sketchy ------------------------------------->
 
-<h1>Sketchy Brush</h1>
+<h2>Sketchy Brush</h2>
 <div class="canvas-wrap">
 	<canvas id="sketchy-canvas"></canvas>
 </div>
@@ -520,7 +536,7 @@ fabricCanvas.freeDrawingBrush = new fabric.SketchyBrush(fabricCanvas, {width:1, 
 
 <!------------------------------------- Spray ------------------------------------->
 
-<h1>Spray Brush</h1>
+<h2>Spray Brush</h2>
 <div class="canvas-wrap">
 	<canvas id="spray-canvas"></canvas>
 </div>
@@ -570,7 +586,7 @@ fabricCanvas.freeDrawingBrush = new fabric.SprayBrush(fabricCanvas, {width:30, c
 
 <!------------------------------------- Squares ------------------------------------->
 
-<h1>Squares Brush</h1>
+<h2>Squares Brush</h2>
 <div class="canvas-wrap">
 	<canvas id="squares-canvas"></canvas>
 </div>
@@ -625,7 +641,7 @@ fabricCanvas.freeDrawingBrush = new fabric.SquaresBrush(fabricCanvas, {width:1, 
 
 <!------------------------------------- Web ------------------------------------->
 
-<h1>Web Brush</h1>
+<h2>Web Brush</h2>
 <div class="canvas-wrap">
 	<canvas id="web-canvas"></canvas>
 </div>
