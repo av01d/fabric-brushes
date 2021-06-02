@@ -1,0 +1,677 @@
+<!doctype html>
+<html>
+<head>
+<title>Fabric Brushes Demo</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.4.0/fabric.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.7/dat.gui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+<script src="dist/fabric.brushes.js"></script>
+<script>
+
+const DatGui = (props, _fabricCanvas) => {
+	let fabricCanvas = _fabricCanvas;
+
+	const gui = new dat.GUI({autoPlace:false});
+	for (let p in props) {
+		gui['brush'+p.charAt(0).toUpperCase() + p.slice(1)] = props[p];
+	}
+
+	let currentBrush = null;
+
+	function addButtons() {
+		gui.clear = () => {
+			fabricCanvas.clear();
+		}
+		gui.save = () => {
+			const a = document.createElement('a');
+			a.download = 'sample.png';
+			a.href = fabricCanvas.toDataURL();
+			a.click();
+		}
+		gui.stopDraw = () => {
+			currentBrush = fabricCanvas.freeDrawingBrush;
+			fabricCanvas.isDrawingMode = false;
+		}
+		gui.startDraw = () => {
+			fabricCanvas.freeDrawingBrush = currentBrush;
+			fabricCanvas.isDrawingMode = true;
+		}
+
+		gui.add(gui, 'stopDraw');
+		gui.add(gui, 'startDraw');
+		gui.add(gui, 'save');
+		gui.add(gui, 'clear');
+	}
+
+	return {
+		addButtons,
+		getGui: () => {
+			return gui;
+		}
+	}
+};
+
+const getFabricCanvas = (canvasID, brushName, brushOpts) => {
+	const fabricCanvas = new fabric.Canvas(canvasID, {
+		isDrawingMode: true,
+		//enableRetinaScaling: false
+	})
+	.setWidth(window.innerWidth-20)
+	.setHeight(400);
+
+	fabricCanvas.freeDrawingBrush = new fabric[brushName](fabricCanvas, brushOpts || {});
+
+	return fabricCanvas;
+}
+
+window.addEventListener('load', () => {
+	// Highlight code samples:
+	hljs.configure({
+		tabReplace: '   ', // 3 spaces
+	});
+
+	const els = document.querySelectorAll('pre code');
+	els.forEach((el) => {
+		hljs.highlightBlock(el);
+	})
+
+});
+
+</script>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/github.min.css">
+<style>
+
+body {
+	background-color: #fff;
+	color: #000;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.canvas-container {
+	background-image: url(data:image/gif;base64,R0lGODlhCgAKAIAAAOLi4v///yH5BAAHAP8ALAAAAAAKAAoAAAIRhB2ZhxoM3GMSykqd1VltzxQAOw==);
+	outline:  1px solid #ccc;
+}
+
+.canvas-wrap {
+	position: relative;
+}
+
+/* Make dat.gui positionable */
+.dg {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+.dg.a {
+	float: none;
+	margin-right: 0;
+}
+
+</style>
+</head>
+<body>
+
+<!------------------------------------- Crayon ------------------------------------->
+
+<h1>Crayon Brush</h1>
+<div class="canvas-wrap">
+	<canvas id="crayon-canvas"></canvas>
+</div>
+
+<script>
+
+(canvasID => {
+	const brushOpts = {
+		color: '#f00',
+		width: 30,
+		opacity: 0.6
+	},
+	fabricCanvas = getFabricCanvas(canvasID, 'CrayonBrush', brushOpts),
+	dat = DatGui(brushOpts, fabricCanvas),
+	gui = dat.getGui();
+
+	gui.add(gui, 'brushWidth', 5, 100).step(5)
+	.onChange(value => {
+		fabricCanvas.freeDrawingBrush.width = value;
+	});
+
+	gui.addColor(gui, 'brushColor')
+	.onChange(value => {
+		fabricCanvas.freeDrawingBrush.color = value;
+	});
+
+	gui.add(gui, 'brushOpacity', 0.1, 1).step(0.1)
+	.onChange(value => {
+		fabricCanvas.freeDrawingBrush.opacity = value;
+	});
+
+	dat.addButtons();
+
+	fabricCanvas.getElement().parentNode.parentNode.appendChild(gui.domElement);
+})('crayon-canvas');
+
+</script>
+
+<pre><code class="html">
+&lt;canvas id="canvas" width="800" height="600"&gt;
+&lt;script&gt;
+const fabricCanvas = new fabric.Canvas('canvas', {
+	isDrawingMode: true
+});
+
+fabricCanvas.freeDrawingBrush = new fabric.CrayonBrush(fabricCanvas, {width:30, color:'#f00', opacity:0.6});
+&lt;/script&gt;
+</code></pre>
+
+<!------------------------------------- Fur ------------------------------------->
+
+<h1>Fur Brush</h1>
+<div class="canvas-wrap">
+	<canvas id="fur-canvas"></canvas>
+</div>
+
+<script>
+
+(canvasID => {
+	const brushOpts = {
+		color: '#000',
+		width: 1,
+		opacity: 1
+	},
+	fabricCanvas = getFabricCanvas(canvasID, 'FurBrush', brushOpts),
+	dat = DatGui(brushOpts, fabricCanvas),
+	gui = dat.getGui();
+
+	gui.add(gui, 'brushWidth', 1, 10).step(1)
+	.onChange(value => {
+		fabricCanvas.freeDrawingBrush.width = value;
+	});
+	gui.addColor(gui, 'brushColor')
+	.onChange(value => {
+		fabricCanvas.freeDrawingBrush.color = value;
+	});
+	gui.add(gui, 'brushOpacity', 0.1, 1).step(0.1)
+	.onChange(value => {
+		fabricCanvas.freeDrawingBrush.opacity = value;
+	});
+
+	dat.addButtons();
+
+	fabricCanvas.getElement().parentNode.parentNode.appendChild(gui.domElement);
+})('fur-canvas');
+
+</script>
+
+<pre><code class="html">
+&lt;canvas id="canvas" width="800" height="600"&gt;
+&lt;script&gt;
+const fabricCanvas = new fabric.Canvas('canvas', {
+	isDrawingMode: true
+});
+
+fabricCanvas.freeDrawingBrush = new fabric.FurBrush(fabricCanvas, {width:1, color:'#000', opacity:1});
+&lt;/script&gt;
+</code></pre>
+
+<!------------------------------------- Ink ------------------------------------->
+
+<h1>Ink Brush</h1>
+<div class="canvas-wrap">
+	<canvas id="ink-canvas"></canvas>
+</div>
+
+<script>
+
+(canvasID => {
+	const brushOpts = {
+		color: '#00f',
+		width: 30,
+		opacity: 1
+	},
+	fabricCanvas = getFabricCanvas(canvasID, 'InkBrush', brushOpts),
+	dat = DatGui(brushOpts, fabricCanvas),
+	gui = dat.getGui();
+
+	gui.add(gui, 'brushWidth', 1, 50).step(1)
+	.onChange(value => {
+		fabricCanvas.freeDrawingBrush.width = value;
+	});
+	gui.addColor(gui, 'brushColor')
+	.onChange(value => {
+		fabricCanvas.freeDrawingBrush.color = value;
+	});
+	gui.add(gui, 'brushOpacity', 0.1, 1).step(0.1)
+	.onChange(value => {
+		fabricCanvas.freeDrawingBrush.opacity = value;
+	});
+
+	dat.addButtons();
+
+	fabricCanvas.getElement().parentNode.parentNode.appendChild(gui.domElement);
+})('ink-canvas');
+
+</script>
+
+<pre><code class="html">
+&lt;canvas id="canvas" width="800" height="600"&gt;
+&lt;script&gt;
+const fabricCanvas = new fabric.Canvas('canvas', {
+	isDrawingMode: true
+});
+
+fabricCanvas.freeDrawingBrush = new fabric.InkBrush(fabricCanvas, {width:30, color:'#00f', opacity:1});
+&lt;/script&gt;
+</code></pre>
+
+<!------------------------------------- Long Fur ------------------------------------->
+
+<h1>Long Fur Brush</h1>
+<div class="canvas-wrap">
+	<canvas id="longfur-canvas"></canvas>
+</div>
+
+<script>
+
+(canvasID => {
+	const brushOpts = {
+		color: '#000',
+		width: 1,
+		opacity: 1
+	},
+	fabricCanvas = getFabricCanvas(canvasID, 'LongFurBrush', brushOpts),
+	dat = DatGui(brushOpts, fabricCanvas),
+	gui = dat.getGui();
+
+	gui.add(gui, 'brushWidth', 1, 10).step(1)
+	.onChange(value => {
+		fabricCanvas.freeDrawingBrush.width = value;
+	});
+	gui.addColor(gui, 'brushColor')
+	.onChange(value => {
+		fabricCanvas.freeDrawingBrush.color = value;
+	});
+	gui.add(gui, 'brushOpacity', 0.1, 1).step(0.1)
+	.onChange(value => {
+		fabricCanvas.freeDrawingBrush.opacity = value;
+	});
+
+	dat.addButtons();
+
+	fabricCanvas.getElement().parentNode.parentNode.appendChild(gui.domElement);
+})('longfur-canvas');
+
+</script>
+
+<pre><code class="html">
+&lt;canvas id="canvas" width="800" height="600"&gt;
+&lt;script&gt;
+const fabricCanvas = new fabric.Canvas('canvas', {
+	isDrawingMode: true
+});
+
+fabricCanvas.freeDrawingBrush = new fabric.LongFurBrush(fabricCanvas, {width:1, color:'#000', opacity:1});
+&lt;/script&gt;
+</code></pre>
+
+<!------------------------------------- Marker ------------------------------------->
+
+<h1>Marker Brush</h1>
+<div class="canvas-wrap">
+	<canvas id="marker-canvas"></canvas>
+</div>
+
+<script>
+
+(canvasID => {
+	const brushOpts = {
+		color: '#ff7f50',
+		width: 30,
+		opacity: 1
+	},
+	fabricCanvas = getFabricCanvas(canvasID, 'MarkerBrush', brushOpts),
+	dat = DatGui(brushOpts, fabricCanvas),
+	gui = dat.getGui();
+
+	gui.add(gui, 'brushWidth', 1, 50).step(1)
+	.onChange(value => {
+		fabricCanvas.freeDrawingBrush.width = value;
+	});
+	gui.addColor(gui, 'brushColor')
+	.onChange(value => {
+		fabricCanvas.freeDrawingBrush.color = value;
+	});
+	gui.add(gui, 'brushOpacity', 0.1, 1).step(0.1)
+	.onChange(value => {
+		fabricCanvas.freeDrawingBrush.opacity = value;
+	});
+
+	dat.addButtons();
+
+	fabricCanvas.getElement().parentNode.parentNode.appendChild(gui.domElement);
+})('marker-canvas');
+
+</script>
+
+<pre><code class="html">
+&lt;canvas id="canvas" width="800" height="600"&gt;
+&lt;script&gt;
+const fabricCanvas = new fabric.Canvas('canvas', {
+	isDrawingMode: true
+});
+
+fabricCanvas.freeDrawingBrush = new fabric.MarkerBrush(fabricCanvas, {width:30, color:'#ff7f50', opacity:1});
+&lt;/script&gt;
+</code></pre>
+
+<!------------------------------------- Ribbon ------------------------------------->
+
+<h1>Ribbon Brush</h1>
+<div class="canvas-wrap">
+	<canvas id="ribbon-canvas"></canvas>
+</div>
+
+<script>
+
+(canvasID => {
+	const brushOpts = {
+		color: '#cb3232',
+		width: 1,
+		opacity: 1
+	},
+	fabricCanvas = getFabricCanvas(canvasID, 'RibbonBrush', brushOpts),
+	dat = DatGui(brushOpts, fabricCanvas),
+	gui = dat.getGui();
+
+	gui.add(gui, 'brushWidth', 1, 10).step(1)
+	.onChange(value => {
+		fabricCanvas.freeDrawingBrush.width = value;
+	});
+	gui.addColor(gui, 'brushColor')
+	.onChange(value => {
+		fabricCanvas.freeDrawingBrush.color = value;
+	});
+	gui.add(gui, 'brushOpacity', 0.1, 1).step(0.1)
+	.onChange(value => {
+		fabricCanvas.freeDrawingBrush.opacity = value;
+	});
+
+	dat.addButtons();
+
+	fabricCanvas.getElement().parentNode.parentNode.appendChild(gui.domElement);
+})('ribbon-canvas');
+
+</script>
+
+<pre><code class="html">
+&lt;canvas id="canvas" width="800" height="600"&gt;
+&lt;script&gt;
+const fabricCanvas = new fabric.Canvas('canvas', {
+	isDrawingMode: true
+});
+
+fabricCanvas.freeDrawingBrush = new fabric.RibbonBrush(fabricCanvas, {width:1, color:'#cb3232', opacity:1});
+&lt;/script&gt;
+</code></pre>
+
+<!------------------------------------- Shaded ------------------------------------->
+
+<h1>Shaded Brush</h1>
+<div class="canvas-wrap">
+	<canvas id="shaded-canvas"></canvas>
+</div>
+
+<script>
+
+(canvasID => {
+	const brushOpts = {
+		color: '#000',
+		width: 1,
+		opacity: 0.1,
+		shadeDistance: 1000
+	},
+	fabricCanvas = getFabricCanvas(canvasID, 'ShadedBrush', brushOpts),
+	dat = DatGui(brushOpts, fabricCanvas),
+	gui = dat.getGui();
+
+	gui.add(gui, 'brushWidth', 1, 10).step(1)
+	.onChange(value => {
+		fabricCanvas.freeDrawingBrush.width = value;
+	});
+	gui.addColor(gui, 'brushColor')
+	.onChange(value => {
+		fabricCanvas.freeDrawingBrush.color = value;
+	});
+	gui.add(gui, 'brushOpacity', 0.1, 1).step(0.1)
+	.onChange(value => {
+		fabricCanvas.freeDrawingBrush.opacity = value;
+	});
+	gui.add(gui, 'brushShadeDistance', 0, 2500).step(100)
+	.onChange(value => {
+		fabricCanvas.freeDrawingBrush.shadeDistance = value;
+	});
+
+	dat.addButtons();
+
+	fabricCanvas.getElement().parentNode.parentNode.appendChild(gui.domElement);
+})('shaded-canvas');
+
+</script>
+
+<pre><code class="html">
+&lt;canvas id="canvas" width="800" height="600"&gt;
+&lt;script&gt;
+const fabricCanvas = new fabric.Canvas('canvas', {
+	isDrawingMode: true
+});
+
+fabricCanvas.freeDrawingBrush = new fabric.ShadedBrush(fabricCanvas, {width:1, color:'#000', opacity:0.1, shadeDistance:1000});
+&lt;/script&gt;
+</code></pre>
+
+<!------------------------------------- Sketchy ------------------------------------->
+
+<h1>Sketchy Brush</h1>
+<div class="canvas-wrap">
+	<canvas id="sketchy-canvas"></canvas>
+</div>
+
+<script>
+
+(canvasID => {
+	const brushOpts = {
+		color: '#000',
+		width: 1,
+		opacity: 1
+	},
+	fabricCanvas = getFabricCanvas(canvasID, 'SketchyBrush', brushOpts),
+	dat = DatGui(brushOpts, fabricCanvas),
+	gui = dat.getGui();
+
+	gui.add(gui, 'brushWidth', 1, 10).step(1)
+	.onChange(value => {
+		fabricCanvas.freeDrawingBrush.width = value;
+	});
+	gui.addColor(gui, 'brushColor')
+	.onChange(value => {
+		fabricCanvas.freeDrawingBrush.color = value;
+	});
+	gui.add(gui, 'brushOpacity', 0.1, 1).step(0.1)
+	.onChange(value => {
+		fabricCanvas.freeDrawingBrush.opacity = value;
+	});
+
+	dat.addButtons();
+
+	fabricCanvas.getElement().parentNode.parentNode.appendChild(gui.domElement);
+})('sketchy-canvas');
+
+</script>
+
+<pre><code class="html">
+&lt;canvas id="canvas" width="800" height="600"&gt;
+&lt;script&gt;
+const fabricCanvas = new fabric.Canvas('canvas', {
+	isDrawingMode: true
+});
+
+fabricCanvas.freeDrawingBrush = new fabric.SketchyBrush(fabricCanvas, {width:1, color:'#000', opacity:1});
+&lt;/script&gt;
+</code></pre>
+
+<!------------------------------------- Spray ------------------------------------->
+
+<h1>Spray Brush</h1>
+<div class="canvas-wrap">
+	<canvas id="spray-canvas"></canvas>
+</div>
+
+<script>
+
+(canvasID => {
+	const brushOpts = {
+		color: '#4598a9',
+		width: 30,
+		opacity: 1
+	},
+	fabricCanvas = getFabricCanvas(canvasID, 'SprayBrush', brushOpts),
+	dat = DatGui(brushOpts, fabricCanvas),
+	gui = dat.getGui();
+
+	gui.add(gui, 'brushWidth', 1, 50).step(1)
+	.onChange(value => {
+		fabricCanvas.freeDrawingBrush.width = value;
+	});
+	gui.addColor(gui, 'brushColor')
+	.onChange(value => {
+		fabricCanvas.freeDrawingBrush.color = value;
+	});
+	gui.add(gui, 'brushOpacity', 0.1, 1).step(0.1)
+	.onChange(value => {
+		fabricCanvas.freeDrawingBrush.opacity = value;
+	});
+
+	dat.addButtons();
+
+	fabricCanvas.getElement().parentNode.parentNode.appendChild(gui.domElement);
+})('spray-canvas');
+
+</script>
+
+<pre><code class="html">
+&lt;canvas id="canvas" width="800" height="600"&gt;
+&lt;script&gt;
+const fabricCanvas = new fabric.Canvas('canvas', {
+	isDrawingMode: true
+});
+
+fabricCanvas.freeDrawingBrush = new fabric.SprayBrush(fabricCanvas, {width:30, color:'#4598a9', opacity:1});
+&lt;/script&gt;
+</code></pre>
+
+<!------------------------------------- Squares ------------------------------------->
+
+<h1>Squares Brush</h1>
+<div class="canvas-wrap">
+	<canvas id="squares-canvas"></canvas>
+</div>
+
+<script>
+
+(canvasID => {
+	const brushOpts = {
+		color: '#000',
+		bgColor: '#fff',
+		width: 1,
+		opacity: 1
+	},
+	fabricCanvas = getFabricCanvas(canvasID, 'SquaresBrush', brushOpts),
+	dat = DatGui(brushOpts, fabricCanvas),
+	gui = dat.getGui();
+
+	gui.add(gui, 'brushWidth', 1, 10).step(1)
+	.onChange(value => {
+		fabricCanvas.freeDrawingBrush.width = value;
+	});
+	gui.addColor(gui, 'brushColor')
+	.onChange(value => {
+		fabricCanvas.freeDrawingBrush.color = value;
+	});
+	gui.addColor(gui, 'brushBgColor')
+	.onChange(value => {
+		fabricCanvas.freeDrawingBrush.bgColor = value;
+	});
+	gui.add(gui, 'brushOpacity', 0.1, 1).step(0.1)
+	.onChange(value => {
+		fabricCanvas.freeDrawingBrush.opacity = value;
+	});
+
+	dat.addButtons();
+
+	fabricCanvas.getElement().parentNode.parentNode.appendChild(gui.domElement);
+})('squares-canvas');
+
+</script>
+
+<pre><code class="html">
+&lt;canvas id="canvas" width="800" height="600"&gt;
+&lt;script&gt;
+const fabricCanvas = new fabric.Canvas('canvas', {
+	isDrawingMode: true
+});
+
+fabricCanvas.freeDrawingBrush = new fabric.SquaresBrush(fabricCanvas, {width:1, color:'#000', bgColor:'#fff', opacity:1});
+&lt;/script&gt;
+</code></pre>
+
+<!------------------------------------- Web ------------------------------------->
+
+<h1>Web Brush</h1>
+<div class="canvas-wrap">
+	<canvas id="web-canvas"></canvas>
+</div>
+
+<script>
+
+(canvasID => {
+	const brushOpts = {
+		color: '#000',
+		width: 1,
+		opacity: 1
+	},
+	fabricCanvas = getFabricCanvas(canvasID, 'WebBrush', brushOpts),
+	dat = DatGui(brushOpts, fabricCanvas),
+	gui = dat.getGui();
+
+	gui.add(gui, 'brushWidth', 1, 10).step(1)
+	.onChange(value => {
+		fabricCanvas.freeDrawingBrush.width = value;
+	});
+	gui.addColor(gui, 'brushColor')
+	.onChange(value => {
+		fabricCanvas.freeDrawingBrush.color = value;
+	});
+	gui.add(gui, 'brushOpacity', 0.1, 1).step(0.1)
+	.onChange(value => {
+		fabricCanvas.freeDrawingBrush.opacity = value;
+	});
+
+	dat.addButtons();
+
+	fabricCanvas.getElement().parentNode.parentNode.appendChild(gui.domElement);
+})('web-canvas');
+
+</script>
+
+<pre><code class="html">
+&lt;canvas id="canvas" width="800" height="600"&gt;
+&lt;script&gt;
+const fabricCanvas = new fabric.Canvas('canvas', {
+	isDrawingMode: true
+});
+
+fabricCanvas.freeDrawingBrush = new fabric.WebBrush(fabricCanvas, {width:1, color:'#000', opacity:1});
+&lt;/script&gt;
+</code></pre>
+
+</body>
+</html>
