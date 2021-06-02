@@ -23,6 +23,7 @@ A collection of brushes for fabric.js (version 4 and up).
 - [License](#license)
 
 ## [Demo](https://av01d.github.io/fabric-brushes/index.html)
+[Click here](https://av01d.github.io/fabric-brushes/index.html) for a live demo of all brushes included in this fabric.js addon.
 
 [<img src="https://av01d.github.io/fabric-brushes/img/brush.crayon.gif" alt="Crayon brush" width="640" height="320">](https://av01d.github.io/fabric-brush)
 [<img src="https://av01d.github.io/fabric-brushes/img/brush.fur.gif" alt="Fur brush" width="640" height="320">](https://av01d.github.io/fabric-brush)
