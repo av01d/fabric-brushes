@@ -197,7 +197,7 @@ This addon works on the same browsers as fabric.js does:
 
 ## Real world examples
 
-The Fontpicker plugin is used (among others) on the following websites:
+These brushes for fabric.js are used (among others) on the following websites:
 
 - [PosterMaker.com](https://www.postermaker.com/)
 
