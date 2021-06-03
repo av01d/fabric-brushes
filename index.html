@@ -535,11 +535,11 @@ fabricCanvas.freeDrawingBrush = new fabric.SketchyBrush(fabricCanvas, {width:1, 
 &lt;/script&gt;
 </code></pre>
 
-<!------------------------------------- Spray ------------------------------------->
+<!------------------------------------- SprayPaint ------------------------------------->
 
-<h2>Spray Brush</h2>
+<h2>SprayPaint Brush</h2>
 <div class="canvas-wrap">
-	<canvas id="spray-canvas"></canvas>
+	<canvas id="spraypaint-canvas"></canvas>
 </div>
 
 <script>
@@ -550,7 +550,7 @@ fabricCanvas.freeDrawingBrush = new fabric.SketchyBrush(fabricCanvas, {width:1, 
 		width: 30,
 		opacity: 1
 	},
-	fabricCanvas = getFabricCanvas(canvasID, 'SprayBrush', brushOpts),
+	fabricCanvas = getFabricCanvas(canvasID, 'SprayPaintBrush', brushOpts),
 	dat = DatGui(brushOpts, fabricCanvas),
 	gui = dat.getGui();
 
@@ -570,7 +570,7 @@ fabricCanvas.freeDrawingBrush = new fabric.SketchyBrush(fabricCanvas, {width:1, 
 	dat.addButtons();
 
 	fabricCanvas.getElement().parentNode.parentNode.appendChild(gui.domElement);
-})('spray-canvas');
+})('spraypaint-canvas');
 
 </script>
 
@@ -581,7 +581,7 @@ const fabricCanvas = new fabric.Canvas('canvas', {
 	isDrawingMode: true
 });
 
-fabricCanvas.freeDrawingBrush = new fabric.SprayBrush(fabricCanvas, {width:30, color:'#4598a9', opacity:1});
+fabricCanvas.freeDrawingBrush = new fabric.SprayPaintBrush(fabricCanvas, {width:30, color:'#4598a9', opacity:1});
 &lt;/script&gt;
 </code></pre>
 

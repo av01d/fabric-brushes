@@ -814,10 +814,10 @@ fabric.SketchyBrush = fabric.util.createClass(fabric.BaseBrush, {
 }); // End SketchyBrush
 
 /**
- * SprayBrush
+ * SprayPaintBrush
  * Based on code by Tennison Chan.
  */
-fabric.SprayBrush = fabric.util.createClass(fabric.BaseBrush, {
+fabric.SprayPaintBrush = fabric.util.createClass(fabric.BaseBrush, {
 	color: '#000',
 	opacity: 1,
 	width: 30,
@@ -918,7 +918,7 @@ fabric.SprayBrush = fabric.util.createClass(fabric.BaseBrush, {
 		this._point = null;
 		this._lastPoint = null;
 	}
-}); // End Spraybrush
+}); // End SprayPaintBrush
 
 /**
  * SquaresBrush

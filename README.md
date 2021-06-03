@@ -10,7 +10,7 @@ A collection of brushes for fabric.js (version 4 and up).
 - Ribbon
 - Shaded
 - Sketchy
-- Spray
+- SprayPaint
 - Squares
 - Web
 
@@ -33,7 +33,7 @@ A collection of brushes for fabric.js (version 4 and up).
 [<img src="https://av01d.github.io/fabric-brushes/img/brush.ribbon.gif" alt="Ribbon brush" width="640" height="320">](https://av01d.github.io/fabric-brush)
 [<img src="https://av01d.github.io/fabric-brushes/img/brush.shaded.gif" alt="Shaded brush" width="640" height="320">](https://av01d.github.io/fabric-brush)
 [<img src="https://av01d.github.io/fabric-brushes/img/brush.sketchy.gif" alt="Sketchy brush" width="640" height="320">](https://av01d.github.io/fabric-brush)
-[<img src="https://av01d.github.io/fabric-brushes/img/brush.spray.gif" alt="Spray brush" width="640" height="320">](https://av01d.github.io/fabric-brush)
+[<img src="https://av01d.github.io/fabric-brushes/img/brush.spraypaint.gif" alt="SprayPaint brush" width="640" height="320">](https://av01d.github.io/fabric-brush)
 [<img src="https://av01d.github.io/fabric-brushes/img/brush.squares.gif" alt="Squares brush" width="640" height="320">](https://av01d.github.io/fabric-brush)
 [<img src="https://av01d.github.io/fabric-brushes/img/brush.web.gif" alt="Web brush" width="640" height="320">](https://av01d.github.io/fabric-brush)
 
@@ -149,9 +149,9 @@ fabricCanvas.freeDrawingBrush = new fabric.SketchyBrush(fabricCanvas,
 });
 ```
 
-### SprayBrush
+### SprayPaintBrush
 ```js
-fabricCanvas.freeDrawingBrush = new fabric.SprayBrush(fabricCanvas,
+fabricCanvas.freeDrawingBrush = new fabric.SprayPaintBrush(fabricCanvas,
 {
 	width: 30, // Width of brush
 	color: '#000', // Color of brush
