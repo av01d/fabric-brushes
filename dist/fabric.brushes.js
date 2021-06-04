@@ -651,6 +651,11 @@ fabric.RibbonBrush = fabric.util.createClass(fabric.BaseBrush, {
 		var ctx = this.canvas.contextTop,
 			color = fabric.util.colorValues(this.color);
 
+		this._painters = [];
+		for (var i = 0; i < this._nrPainters; i++) {
+			this._painters.push({ dx:this.canvas.width / 2, dy:this.canvas.height / 2, ax:0, ay:0, div:.1, ease:Math.random() * .2 + .6 });
+		}
+
 		this._lastPoint = pointer;
 
 		//ctx.globalCompositeOperation = 'source-over';
@@ -941,7 +946,7 @@ fabric.SquaresBrush = fabric.util.createClass(fabric.BaseBrush, {
 		this.width = opt.width || canvas.freeDrawingBrush.width;
 		this.color = opt.color || canvas.freeDrawingBrush.color;
 		this.bgColor = opt.bgColor || '#fff';
-		this.opacity = opt.opacity || 1;
+		this.opacity = opt.opacity || canvas.contextTop.globalAlpha;
 	},
 
 	onMouseDown: function(pointer) {
@@ -953,8 +958,9 @@ fabric.SquaresBrush = fabric.util.createClass(fabric.BaseBrush, {
 		this._drawn = false;
 
 		//ctx.globalCompositeOperation = 'source-over';
-		ctx.fillStyle = 'rgba(' + bgColor[0] + ',' + bgColor[1] + ',' + bgColor[2] + ',' + this.opacity + ')';
-		ctx.strokeStyle = 'rgba(' + color[0] + ',' + color[1] + ',' + color[2] + ',' + this.opacity + ')';
+		this.canvas.contextTop.globalAlpha = this.opacity;
+		ctx.fillStyle = 'rgba(' + bgColor[0] + ',' + bgColor[1] + ',' + bgColor[2] + ',' + bgColor[3] + ')';
+		ctx.strokeStyle = 'rgba(' + color[0] + ',' + color[1] + ',' + color[2] + ',' + color[3] + ')';
 		ctx.lineWidth = this.width;
 	},
 
@@ -983,6 +989,7 @@ fabric.SquaresBrush = fabric.util.createClass(fabric.BaseBrush, {
 		if (this._drawn) {
 			this.convertToImg();
 		}
+		this.canvas.contextTop.globalAlpha = 1;
 	},
 
 	_render: function() {}
