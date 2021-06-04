@@ -10,7 +10,7 @@ A collection of brushes for fabric.js (version 4 and up).
 - Ribbon
 - Shaded
 - Sketchy
-- SprayPaint
+- Spraypaint
 - Squares
 - Web
 
@@ -33,7 +33,7 @@ A collection of brushes for fabric.js (version 4 and up).
 [<img src="https://av01d.github.io/fabric-brushes/img/brush.ribbon.gif" alt="Ribbon brush" width="640" height="320">](https://av01d.github.io/fabric-brush)
 [<img src="https://av01d.github.io/fabric-brushes/img/brush.shaded.gif" alt="Shaded brush" width="640" height="320">](https://av01d.github.io/fabric-brush)
 [<img src="https://av01d.github.io/fabric-brushes/img/brush.sketchy.gif" alt="Sketchy brush" width="640" height="320">](https://av01d.github.io/fabric-brush)
-[<img src="https://av01d.github.io/fabric-brushes/img/brush.spraypaint.gif" alt="SprayPaint brush" width="640" height="320">](https://av01d.github.io/fabric-brush)
+[<img src="https://av01d.github.io/fabric-brushes/img/brush.spraypaint.gif" alt="Spraypaint brush" width="640" height="320">](https://av01d.github.io/fabric-brush)
 [<img src="https://av01d.github.io/fabric-brushes/img/brush.squares.gif" alt="Squares brush" width="640" height="320">](https://av01d.github.io/fabric-brush)
 [<img src="https://av01d.github.io/fabric-brushes/img/brush.web.gif" alt="Web brush" width="640" height="320">](https://av01d.github.io/fabric-brush)
 
@@ -98,9 +98,9 @@ fabricCanvas.freeDrawingBrush = new fabric.InkBrush(fabricCanvas,
 });
 ```
 
-### LongFurBrush
+### LongfurBrush
 ```js
-fabricCanvas.freeDrawingBrush = new fabric.LongFurBrush(fabricCanvas,
+fabricCanvas.freeDrawingBrush = new fabric.LongfurBrush(fabricCanvas,
 {
 	width: 1, // Width of brush
 	color: '#000', // Color of brush
@@ -149,9 +149,9 @@ fabricCanvas.freeDrawingBrush = new fabric.SketchyBrush(fabricCanvas,
 });
 ```
 
-### SprayPaintBrush
+### SpraypaintBrush
 ```js
-fabricCanvas.freeDrawingBrush = new fabric.SprayPaintBrush(fabricCanvas,
+fabricCanvas.freeDrawingBrush = new fabric.SpraypaintBrush(fabricCanvas,
 {
 	width: 30, // Width of brush
 	color: '#000', // Color of brush

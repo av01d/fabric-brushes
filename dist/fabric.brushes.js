@@ -473,10 +473,10 @@ fabric.InkBrush = fabric.util.createClass(fabric.BaseBrush, {
 }); // End InkBrush
 
 /**
- * LongFurBrush
+ * LongfurBrush
  * Based on code by Mr. Doob.
  */
-fabric.LongFurBrush = fabric.util.createClass(fabric.BaseBrush, {
+fabric.LongfurBrush = fabric.util.createClass(fabric.BaseBrush, {
 	color: '#000',
 	opacity: 1,
 	width: 1,
@@ -537,7 +537,7 @@ fabric.LongFurBrush = fabric.util.createClass(fabric.BaseBrush, {
 	},
 
 	_render: function() {}
-}); // End LongFurBrush
+}); // End LongfurBrush
 
 /**
  * MarkerBrush
@@ -814,10 +814,10 @@ fabric.SketchyBrush = fabric.util.createClass(fabric.BaseBrush, {
 }); // End SketchyBrush
 
 /**
- * SprayPaintBrush
+ * SpraypaintBrush
  * Based on code by Tennison Chan.
  */
-fabric.SprayPaintBrush = fabric.util.createClass(fabric.BaseBrush, {
+fabric.SpraypaintBrush = fabric.util.createClass(fabric.BaseBrush, {
 	color: '#000',
 	opacity: 1,
 	width: 30,
@@ -918,7 +918,7 @@ fabric.SprayPaintBrush = fabric.util.createClass(fabric.BaseBrush, {
 		this._point = null;
 		this._lastPoint = null;
 	}
-}); // End SprayPaintBrush
+}); // End SpraypaintBrush
 
 /**
  * SquaresBrush
