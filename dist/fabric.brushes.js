@@ -245,6 +245,7 @@ fabric.CrayonBrush = fabric.util.createClass(fabric.BaseBrush, {
 		}
 		this._latest = null;
 		this._latestStrokeLength = 0;
+		this.canvas.contextTop.globalAlpha = 1;
 	},
 
 	set: function(p) {
@@ -427,6 +428,7 @@ fabric.InkBrush = fabric.util.createClass(fabric.BaseBrush, {
 
 	onMouseUp: function() {
 		this.convertToImg();
+		this.canvas.contextTop.globalAlpha = 1;
 	},
 
 	drawSplash: function(pointer, maxSize) {
@@ -602,6 +604,7 @@ fabric.MarkerBrush = fabric.util.createClass(fabric.BaseBrush, {
 
 	onMouseUp: function() {
 		this.canvas.contextTop.globalAlpha = this.opacity;
+		this.canvas.contextTop.globalAlpha = 1;
 	}
 }); // End MarkerBrush
 
@@ -847,29 +850,26 @@ fabric.SpraypaintBrush = fabric.util.createClass(fabric.BaseBrush, {
 		fabric.Image.fromURL(this.sprayBrushDataUrl, function(brush) {
 			self.brush = brush;
 			self.brush.filters = [];
-			self.changeColor(self.color || this.color);
+			self._setColor(self.color || this.color);
 		}, { crossOrigin: 'anonymous' });
 	},
 
-	changeColor: function(color) {
+
+	_setColor: function(color) {
 		this.color = color;
 		this.brush.filters[0] = new fabric.Image.filters.BlendColor({ color:color, alpha:1, mode:'tint' });
 		this.brush.applyFilters();
 	},
 
-	changeOpacity: function(value) {
-		this.opacity = value;
-		this.canvas.contextTop.globalAlpha = value;
-	},
-
 	onMouseDown: function(pointer) {
+		this.canvas.contextTop.globalAlpha = this.opacity;
 		this._point = new fabric.Point(pointer.x, pointer.y);
 		this._lastPoint = this._point;
 
 		this.size = this.width + this._baseWidth;
 		this._inkAmount = 0;
 
-		this.changeColor(this.color);
+		this._setColor(this.color);
 		this._render();
 	},
 
@@ -917,6 +917,7 @@ fabric.SpraypaintBrush = fabric.util.createClass(fabric.BaseBrush, {
 	_reset: function() {
 		this._point = null;
 		this._lastPoint = null;
+		this.canvas.contextTop.globalAlpha = 1;
 	}
 }); // End SpraypaintBrush
 
