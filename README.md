@@ -206,6 +206,7 @@ These brushes for fabric.js are used (among others) on the following websites:
 ## Donation
 
 If you like what I've made here, you can sponsor me with a donation. Thank you so much!
+
 [![](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=VUVAC8EA3X468)
 
 ## License
