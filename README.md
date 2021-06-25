@@ -20,7 +20,7 @@ A collection of brushes for fabric.js (version 4 and up).
 - [Options](#options)
 - [Browser support](#browser-support)
 - [Real world examples](#real-world-examples)
-- [Donations] (#donations)
+- [Donations](#donations)
 - [License](#license)
 
 ## [Demo](https://av01d.github.io/fabric-brushes/index.html)
