@@ -210,6 +210,8 @@ If you like what I've made here, you can sponsor me with a donation. Thank you s
 
 [![](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=VUVAC8EA3X468)
 
+[⬆ back to top](#table-of-contents)
+
 ## License
 
 This plugin is released under the MIT license. It is simple and easy to understand and places almost no restrictions on what you can do with the code.
