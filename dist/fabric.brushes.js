@@ -571,7 +571,7 @@ fabric.MarkerBrush = fabric.util.createClass(fabric.BaseBrush, {
 	},
 
 	_render: function(pointer) {
-		var ctx, lineWidthDiff, i;
+		var ctx, lineWidthDiff, i, len;
 
 		ctx = this.canvas.contextTop;
 
