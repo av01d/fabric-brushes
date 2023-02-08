@@ -605,6 +605,7 @@ fabric.MarkerBrush = fabric.util.createClass(fabric.BaseBrush, {
 	onMouseUp: function() {
 		this.canvas.contextTop.globalAlpha = this.opacity;
 		this.canvas.contextTop.globalAlpha = 1;
+		this.convertToImg();
 	}
 }); // End MarkerBrush
 
