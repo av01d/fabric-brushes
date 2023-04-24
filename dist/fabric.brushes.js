@@ -130,8 +130,9 @@ fabric.BaseBrush.prototype.convertToImg = function() {
 		c = fabric.util.copyCanvasElement(this.canvas.upperCanvasEl),
 		xy = fabric.util.trimCanvas(c),
 		img = new fabric.Image(c);
-	this.canvas.add(img);
+
 	img.set({left:xy.x/pixelRatio,top:xy.y/pixelRatio,'scaleX':1/pixelRatio,'scaleY':1/pixelRatio}).setCoords();
+	this.canvas.add(img).clearContext(this.canvas.contextTop);
 	this.canvas.clearContext(this.canvas.contextTop);
 }
 
